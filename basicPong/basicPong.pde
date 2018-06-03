@@ -1,48 +1,49 @@
-
 Paddle p;
 Ball b;
-boolean gameOn=true;
+boolean up;
+boolean down;
 int count;
-
 
 void setup() {
   size(400, 400);
-  p=new Paddle(10, 20, 20, 200);
+  p=new Paddle(10, 20, 20, 100);
   b=new Ball(100, 100, 40, 40);
-  println(b.getX());
-  println(b.getH());
-  println(p.getX());
-  println(p.getH());
 }
-
 
 void draw() {
   background(0);
   p.run();
   b.run();
+  if (up) {
+    p.movePaddleUp();
+  } 
+  if (down) {
+    p.movePaddleDown();
+  }
   checkCollision();
 }
 
-void keyPressed() {
-  p.gameOn();
+void checkCollision() { 
+  if (b.getX()<b.getW()-10+p.getW()&&b.getY()<p.getY()+p.getH()&&b.getY()>p.getY()) {
+    b.getSpeedX();
+    b.getSpeedY();
+  }
 }
 
-boolean checkCollision(){ 
-  
- //println(p.getY()+p.getH());
-  if(b.getX()<b.getW()-10+p.getW()&&b.getY()<p.getY()+p.getH()&&b.getY()>p.getY()){
-    
-    //prevents left paddle from sticking
-  //if (p.getY()>=p.getH()) {
-  //  p.getY()=p.getY()-2;
-  //}
-  //if (lpY+pSize<=pU) {
-  //  lpY+=computerSpeed;
-  //}
-   println("hey"); 
-   b.getSpeedX();
-   b.getSpeedY();
-   return true;
+void keyPressed() {
+  if (keyCode==UP) {
+    up=true;
   }
-  return false; 
+  if (keyCode==DOWN) {
+    down=true;
+  }
+}
+
+void keyReleased() {
+  if (keyCode==UP) {
+    up=false;
+  }
+  if (keyCode==DOWN) {
+    down=false;
+  }
 }

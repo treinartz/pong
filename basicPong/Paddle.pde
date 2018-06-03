@@ -3,8 +3,9 @@ class Paddle {
   float y;
   float w;
   float h;
-  boolean gameOn=true;
   int count;
+  float velocity;
+  float ySpeed=5;
 
   Paddle(float x, float y, float w, float h) {
     this.x=x;
@@ -14,47 +15,37 @@ class Paddle {
   }
 
   void run() {
-    update();
     display();
+    limitPaddle();
   }
-  void update() {
-    if (key==CODED) {
-      if (keyCode==UP) {
-        y-=5;
-      } else if (keyCode==DOWN) {
-        y+=5;
-      } else {
-        //println(count++);
-      }
-    }
+  void movePaddleUp() {
+    y-=ySpeed;
   }
-  
-  void gameOn(){
-    if(gameOn==false){
-      gameOn=true;
-    }else if(gameOn==true){
-     gameOn=false; 
+  void movePaddleDown() {
+    y+=ySpeed;
+  }
+  void limitPaddle(){
+    if(y-h+100<0){
+      y+=ySpeed;
     }
-
+    if(y+h>400){
+     y-=ySpeed; 
+    }
   }
   void display() {
     fill(255, 0, 0);
+    //rectMode(CENTER);
     rect(x, y, w, h);
   }
-
-
   float getX() {
     return x;
   }
-
   float getY() {
     return y;
   }
-
   float getW() {
     return w;
   }
-
   float getH() {
     return h;
   }
