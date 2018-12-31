@@ -1,0 +1,4 @@
+You can print the time in any units you want, but recall that the unit of System.nanoTime() is
+nanoseconds, so to convert these to seconds you can divide by 1000000000 (10^9). Be sure to
+use type long to store the results of System.nanoTime()! ints don't give you room to store big
+enough numbers
