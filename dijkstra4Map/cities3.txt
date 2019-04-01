@@ -1,0 +1,9 @@
+LA SF 337
+LA Dallas 1500
+SF Denver 1300
+SF MSP 2000
+Denver Chicago 1000
+MSP Denver 913
+MSP Dallas 940
+MSP Atlanta 1200
+Atlanta Chicago 715
